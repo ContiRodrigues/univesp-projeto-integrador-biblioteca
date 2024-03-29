@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background-color: #e3e3e3;
+}
+
+header h1 {
+  text-align: center;
+  font-family: 'Outfit', Tahoma, sans-serif;
+  color: #727171;
+  background-color: #d4d4d4;
+}
+
+header h2 {
+  text-align: center;
+  font-family: 'Outfit', Tahoma, sans-serif;
+  color: #727171;
+  background-color: #d4d4d4;
+  padding-bottom: 10px;
+}
+
+main {
+  display: flex;
+  height: 500px;
+  margin-left: 20px;
+  padding: 20px 20px;
+}
+
+main p {
+  font-size: 1.4rem;
+}
+
+main p span {
+  font-size: 1rem;
+}
+
+main p span i {
+  font-size: 1.5rem;
+}
+
+.img-books img {
+  width: 260px;
+  height: 500px;
+}
+
+.text-home {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 20px;
+}
+
+.text-home ul {
+  font-size: 1.3rem;
+  padding-right: 20px;
+}
+
+.text-home li {
+  padding-bottom: 8px;
+}
+
+#img-door img {
+  width: 350px;
+}
+
+.text-about {
+  padding-left: 20px;
+}
+
+.text-search {
+  display: flex;
+  padding-left: 20px;
+}
+
+.text-search img {
+  width: 250px;
+}
+
+.search-label {
+  padding-left: 20px;
+}
+
+.search-label p {
+  margin-top: 50px;
+}
+
+#searchbar {
+  width: 400px;
+  padding-left: 8px;
+  font-size: 1.3rem;
+}
+
+#search-icon {
+  font-size: 1.5rem;
+}
+
+.books-test {
+  font-size: 1.3rem;
+  margin-top: 170px;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.text-login {
+  padding-left: 20px;
+}
+
+#username {
+  width: 300px;
+  margin-top: 30px;
+  padding-left: 8px;
+  font-size: 1.3rem;
+}
+
+#password {
+  width: 300px;
+  margin-top: 10px;
+  padding-left: 8px;
+  font-size: 1.3rem;
+}
+
+#button-login {
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+
+#img-inlinebooks img {
+  width: 400px;
+  padding-left: 20px;
+}
+
+nav.menu-lateral {
+  width: 80px;
+  height: 100%;
+  background-color: #366aaa;
+  padding: 20px 0 20px .3%;
+  box-shadow: 5px 0 0 #d4d4d4;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transition: .5s;
+}
+
+nav.menu-lateral.expandir {
+  width: 300px;
+}
+
+.btn-expandir {
+  width: 100%;
+  padding-left: 20px;
+  padding-bottom: 15px;
+}
+
+.btn-expandir > i {
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+ul {
+  height: 100%;
+  list-style-type: none;
+}
+
+ul li.item-menu {
+  transition: .4s;
+}
+
+ul li.ativo {
+  background-color: #d4d4d4;
+}
+
+ul li.item-menu:hover {
+  background: #d4d4d4;
+}
+
+ul li.item-menu a {
+  width: 300px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.4rem;
+  padding: 20px 4%;
+  display: flex;
+  margin-bottom: 10px;
+  line-height: 40px;
+}
+
+ul li.item-menu a .txt-link {
+  margin-left: 70px;
+  transition: .5s;
+  opacity: 0;
+}
+
+nav.menu-lateral.expandir .txt-link {
+  margin-left: 40px;
+  opacity: 1;
+}
+
+ul li.item-menu a .icon > i {
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+footer p {
+  text-align: center;
+}
