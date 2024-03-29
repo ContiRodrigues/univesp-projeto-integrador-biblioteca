@@ -19,12 +19,12 @@ Assim, o presente projeto se utilizará da plataforma e estrutura do Git/GitHub,
 
 ## Os alunos (devs) participantes do projeto 👀
 
-Carlos Alberto Amaro Altamirano, RA 2227899 (Polo Campinas)
-Cesar Luís do Prado de Oliveira, RA 2203400 (Polo Conchal)
-Danilo de Freitas Ramires, RA 2105830 (Polo Ipeúna)
-Jamile da Silva Pereira, RA 2207126 (Polo Conchal)
-Luís Fernando Conti Rodrigues, RA 2223305 (Polo Indaiatuba)
-Talis Eduardo da Silva e Toledo, RA 2214241 (Polo Indaiatuba)
+- Carlos Alberto Amaro Altamirano, RA 2227899 (Polo Campinas)
+- Cesar Luís do Prado de Oliveira, RA 2203400 (Polo Conchal)
+- Danilo de Freitas Ramires, RA 2105830 (Polo Ipeúna)
+- Jamile da Silva Pereira, RA 2207126 (Polo Conchal)
+- Luís Fernando Conti Rodrigues, RA 2223305 (Polo Indaiatuba)
+- Talis Eduardo da Silva e Toledo, RA 2214241 (Polo Indaiatuba)
 
 
 ## Links 📒 :
