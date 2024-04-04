@@ -54,11 +54,16 @@
       </section>
 
       <section class="text-login">
-        <input id="username" type="text" placeholder="Usuário">
-        <br>
-        <input id="password" type="text" placeholder="Senha">
-        <br>
-        <button id="button-login">Entrar</button>
+        <form action="#">
+          <h2>Login</h2>
+          <input id="username" type="text" placeholder="Usuário" required>
+          <span class="icon"><i class="bi bi-person-circle"></i></span>
+          <br>
+          <input id="password" type="password" placeholder="Senha" required>
+          <span class="icon"><i class="bi bi-lock-fill"></i></span>
+          <br>
+          <button type="submit" id="button-login">Entrar</button>
+        </form>
       </section>
 
       <section>

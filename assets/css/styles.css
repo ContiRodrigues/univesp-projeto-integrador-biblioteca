@@ -51,6 +51,7 @@ main p span i {
   height: 500px;
 }
 
+/*Página Inicial*/
 .text-home {
   display: flex;
   justify-content: space-around;
@@ -68,42 +69,12 @@ main p span i {
 
 #img-door img {
   width: 350px;
+  border-radius: 5%;
 }
 
+/*Página Sobre nós*/
 .text-about {
   padding-left: 20px;
-}
-
-.text-search {
-  display: flex;
-  padding-left: 20px;
-}
-
-.text-search img {
-  width: 250px;
-}
-
-.search-label {
-  padding-left: 20px;
-}
-
-.search-label p {
-  margin-top: 50px;
-}
-
-#searchbar {
-  width: 400px;
-  padding-left: 8px;
-  font-size: 1.3rem;
-}
-
-#search-icon {
-  font-size: 1.5rem;
-}
-
-.books-test {
-  font-size: 1.3rem;
-  margin-top: 170px;
 }
 
 .contact {
@@ -113,13 +84,79 @@ main p span i {
   padding-top: 20px;
 }
 
-.text-login {
+/*Página Pesquisar*/
+.text-search {
+  display: flex;
   padding-left: 20px;
+}
+
+.text-search img {
+  width: 250px;
+  margin-left: 100px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.search-label {
+  padding-top: 50px;
+  padding-left: 100px;
+}
+
+.search-label p {
+  margin-top: 50px;
+}
+
+#searchbar {
+  width: 400px;
+  padding-left: 8px;
+  border-radius: 10px;
+  font-size: 1.3rem;
+}
+
+#searchbar:hover {
+  background-color: #d4d4d4;
+}
+
+#search-icon {
+  font-size: 1.5rem;
+  padding: 8px;
+}
+
+.books-test {
+  font-size: 1.3rem;
+  margin-top: 120px;
+}
+
+/*Página Login*/
+.text-login {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  background: transparent;
+  border: 2px solid #727171;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 40px;
+  padding: 10px;
+}
+
+.text-login h2 {
+  color: #727171;
+  text-align: center;
+}
+
+.text-login .icon {
+  font-size: 1.5rem;
+  color: #727171;
+  padding-left: 5px;
 }
 
 #username {
   width: 300px;
-  margin-top: 30px;
+  margin-top: 15px;
   padding-left: 8px;
   font-size: 1.3rem;
 }
@@ -131,16 +168,27 @@ main p span i {
   font-size: 1.3rem;
 }
 
+#username:hover, #password:hover, #button-login:hover {
+  background-color: #d4d4d4;
+}
+
 #button-login {
+  background-color: #989898;
+  border-radius: 8px;
   margin-top: 10px;
+  padding: 4px;
   font-size: 1.1rem;
+  color: #303030;
 }
 
 #img-inlinebooks img {
-  width: 400px;
-  padding-left: 20px;
+  width: 380px;
+  margin-top: 20px;
+  margin-left: 50px;
+  border-radius: 20px;
 }
 
+/*Menu Lateral*/
 nav.menu-lateral {
   width: 80px;
   height: 100%;
@@ -215,6 +263,7 @@ ul li.item-menu a .icon > i {
   margin-left: 10px;
 }
 
+/*Footer da página*/
 footer p {
   text-align: center;
 }
