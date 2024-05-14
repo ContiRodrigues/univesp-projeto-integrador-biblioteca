@@ -267,3 +267,114 @@ ul li.item-menu a .icon > i {
 footer p {
   text-align: center;
 }
+
+/*Página de Cadastros*/
+.registers {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+}
+
+#register-search {
+  position: relative;
+  left: 150px;
+  height: 90px;
+  background-color: #5b9be9;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 10px;
+}
+
+#register-search p {
+  text-align: center;
+}
+
+.register-books {
+  position: relative;
+  background-color: #bebdbd;
+  border-radius: 10px;
+  margin: 30px;
+  padding: 10px;
+}
+
+.register-books p {
+  border: 1px solid;
+  border-radius: 8px;
+  background-color: #5b9be9;
+  margin: 10px;
+  text-align: center;
+}
+
+.register-books p:hover {
+  cursor: pointer;
+  background-color: #9bc2f0;
+}
+
+.register-books a {
+  text-decoration: none;
+  color: #000;
+}
+
+.register-usu {
+  position: relative;
+  left: 470px;
+  top: -200px;
+  background-color: #5b9be9;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 10px;
+}
+
+.register-usu p {
+  border: 1px solid;
+  border-radius: 8px;
+  background-color: #bebdbd;
+  margin: 10px;
+  text-align: center;
+}
+
+.register-usu p:hover {
+  cursor: pointer;
+  background-color: #d4d4d4;
+}
+
+.register-usu a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Página de Cadastro de Livros */
+
+.registers-cads {
+  margin-left: 20px;
+}
+
+#register {
+  display: flex;
+  flex-direction: column;
+}
+
+#register input {
+  font-size: 16px;
+  padding: 5px;
+}
+
+#register div {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#register-nome input {
+  width: 650px;
+}
+
+#register-obs input {
+  width: 550px;
+}
+
+.width-campo input {
+  width: 180px;
+}

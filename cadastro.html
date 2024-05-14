@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastros</title>
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  </head>
+  <body>
+    <header>
+      <h1>Cadastros</h1>
+      <h2>Biblioteca - EMEF Villagio Ghiraldelli</h2>
+    </header>
+
+    <nav class="menu-lateral">
+
+      <div class="btn-expandir">
+        <i class="bi bi-list" id="btn-exp"></i>
+      </div>
+
+      <ul>
+        <li class="item-menu">
+          <a href="index.html">
+            <span class="icon"><i class="bi bi-house-door"></i></span>
+            <span class="txt-link">Voltar ao Início</span>
+          </a>
+        </li>
+        <li class="item-menu ativo">
+          <a href="login.html">
+            <span class="icon"><i class="bi bi-person-circle"></i></span>
+            <span class="txt-link">Logout (Sair)</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <section class="img-books">
+        <img src="./assets/img/image2.jpg" alt="livros">
+      </section>
+
+      <section class="registers">
+        <div id="register-search">
+          <p>Pesquisar Livros</p>
+          <input id="searchbar" onkeyup="search()" type="text" name="searchbar" placeholder="Livro, Autor ou Editora">
+          <span class="icon" id="search-icon"><i class="bi bi-search"></i></span>
+        </div>
+
+        <div class="register-books">
+          <a href="cadastro-livro.html">
+            <span>
+              <p>Cadastrar Livros</p>
+            </span>
+          </a>
+          <a href="cadastro-prateleira.html">
+            <span>
+              <p>Cadastrar Prateleiras</p>
+            </span>
+          </a>
+          <a href="cadastro-emprestimo.html">
+            <span id="emprestar">
+              <p>Empréstimos</p>
+            </span>
+          </a>
+          <a href="cadastro-devolucao.html">
+            <span id="devolver">
+              <p>Devoluções</p>
+            </span>
+          </a>
+        </div>
+
+        <div class="register-usu">
+          <a href="cadastro-aluno.html">
+            <span>
+              <p>Cadastrar Alunos</p>
+            </span>
+          </a>
+          <a href="cadastro-func.html">
+            <span>
+              <p>Cadastrar Funcionários</p>
+            </span>
+          </a>
+          <a href="cadastro-adm.html">
+            <span>
+              <p>Cadastrar Administradores</p>
+            </span>
+          </a>
+        </div>
+      </section>
+    </main>
+  
+    <footer>
+      <p>2024 - Projeto Integrador - Desenvolvido por alunos do Curso de TI da UNIVESP</p>
+    </footer>
+
+    <script src="assets/scripts/menu.js"></script>
+  </body>
+</html>
