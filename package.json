@@ -1,0 +1,26 @@
+{
+  "name": "projeto-integrador-controle-biblioteca",
+  "version": "1.0.0",
+  "description": "Projeto Integrador Univesp - Controle de Biblioteca Escolar",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NodeJS",
+    "Express",
+    "Handlebars",
+    "Bootstrap",
+    "MySQL",
+    "JavaScript"
+  ],
+  "author": "Conti Rodrigues e outros",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "express": "^4.19.2",
+    "express-fileupload": "^1.5.0",
+    "express-handlebars": "^7.1.2",
+    "mysql2": "^3.9.7"
+  }
+}
