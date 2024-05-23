@@ -47,7 +47,7 @@
 
 <header>
   <div class="text-header-cad">
-    <h3>Cadastro de Devolução</h3>
+    <h3>Alterar/Remover Leitor</h3>
   </div>
 </header>
 
@@ -55,50 +55,41 @@
   <section class="img-books">
     <img src="../imagens/image2.jpg" alt="livros">
   </section>
-  <section class="text-cadastro">
-    <div>
-      <div class="registers">
-        <div class="registers-cads">
-          <form id="register" action="/cad-devolucao" method="POST" enctype="multipart/form-data">
-            <div>
-              <p>Data do Cadastro</p>
-              <input type="date" name="data">
-            </div>
-            <div>
-              <p>Código</p>
-              <input type="text" placeholder="Código do Leitor(a)" name="codleitor">
-            </div>
-            <div id="register-nome">
-              <p>Nome</p>
-              <input type="text" placeholder="Nome do Leitor(a)" name="nomeleitor">
-            </div>
-            <div>
-              <p>Código</p>
-              <input type="text" placeholder="Código do Exemplar" name="codexemplar">
-            </div>
-            <div id="register-nome">
-              <p>Nome</p>
-              <input type="text" placeholder="Nome do Exemplar" name="titulo">
-            </div>
-            <div class="width-campo">
-              <p>Data Prevista</p>
-              <input type="date" name="devolprevdata">
-              <p>Status</p>
-              <select id="status" name="status">
-                <option value="Pontual">Pontual</option>
-                <option value="Atrasado">Atrasado</option>
-              </select>
-            </div>
-            <div id="register-obs">
-              <p>Observações</p>
-              <input type="text" placeholder="Digite as observações" name="obs">
-            </div>
-            <div>
-              <input class="btn btn-primary" type="submit" value="Cadastrar">
-              <a class="btn btn-secondary" href="/cadastro">Cancelar</a>
-            </div>
-          </form>
-        </div>
+  <section class="alterar-adm">
+    <form id="register" action="/alterar-leit" method="POST" novalidate enctype="multipart/form-data">
+      <input type="search" placeholder="Código/RA do Leitor(a)" name="codleitor">      
+      <div>
+        <input class="btn btn-primary" type="submit" value="Buscar">
+        <a class="btn btn-secondary" href="/alterar">Cancelar</a>
+      </div>
+    </form>
+  </section>
+  {{!-- Formulário Alterações --}}
+  <section class="alt-view-adm">
+    <div class="card registers">
+      <div class="alt-exem-cont">
+        {{#each leitor}}
+          <div class="alt-exem-div">
+            <p>Código: {{codleitor}}</p>
+          </div>
+          <div class="alt-exem-div">
+            <p>Nome: {{nomeleitor}}</p>
+          </div>
+          <div class="alt-exem-div">
+            <p>Série: {{serie}}</p>
+            <p>Cargo: {{cargo}}</p>
+          </div>
+          <div class="alt-exem-div">
+            <p>Status: {{status}}</p>
+          </div>
+          <div class="alt-exem-div">
+            <p>Observações: {{observacao}}</p>
+          </div>
+          <div class="alt-exem-div">
+            <a href="/altremov-leit/{{codleitor}}" class="btn btn-warning">Alterar</a>
+            <a href="/remover" class="btn btn-danger">Remover</a>
+          </div>
+        {{/each}}
       </div>
     </div>
   </section>

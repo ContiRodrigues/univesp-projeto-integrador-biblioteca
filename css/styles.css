@@ -76,7 +76,7 @@ main p {
 
 .offcanvas-body ul {
   align-items: flex-start;
-  height: 300px;
+  height: 330px;
 }
 
 .nav-item a {
@@ -444,7 +444,7 @@ footer {
   height: 35px;
 }
 
-/* Páginas de Alterações */
+/* Páginas de Alterações Prateleiras */
 .alterar {
   margin-top: 10px;
   margin-left: 65px;
@@ -466,3 +466,122 @@ footer {
   padding-left: 15px;
   padding-right: 15px;
 }
+
+/* Página Alterações Administradores */
+.alterar-adm {
+  margin-top: 5px;
+  margin-left: 65px;
+  padding: 10px;
+}
+
+.alt-view-adm {
+  position: relative;
+  top: 95px;
+  right: 330px;
+}
+
+.alt-view-adm form {
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Página Alteração Exemplar */
+.alterar-exem {
+  margin-left: 60px;
+}
+
+.alterar-exem #register input {
+  font-size: 1rem;
+  height: 27px;
+}
+
+.alterar-exem #register a {
+  font-size: 1rem;
+  padding: 1px;
+}
+
+.alterar-exem #register .exem-font {
+  font-size: 1rem;
+}
+
+.alt-view-exem {
+  position: relative;
+  top: 75px;
+  right: 250px;
+}
+
+.alt-view-exem form {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#register .width-campo-exem p {
+  margin-bottom: 5px;
+}
+
+#register #register-nome p {
+  margin-bottom: 5px;
+}
+
+.alt-view-exem #register input {
+  font-size: 1rem;
+  height: 27px;
+}
+
+.alt-view-exem #register select {
+  font-size: 1rem;
+  height: 27px;
+}
+
+.alt-view-exem #register p {
+  font-size: .9rem;
+}
+
+.alt-view-exem #register input {
+  font-size: .9rem;
+}
+
+.alt-view-exem a {
+  font-size: 1rem;
+  padding: 1px;
+}
+
+/* Alt/Remov Prateleira */
+.alterar-prat {
+  position: relative;
+  left: 50px;
+  top: 20px;
+}
+
+.alterar-prat .card #register {
+  padding: 10px;
+}
+
+/* Alt/Remov Exemplar */
+.card .alt-exem-cont {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.alt-exem-div {
+  display: flex;
+  flex-direction: row;
+  padding-left: 15px;
+  padding-right: 15px;
+  gap: 20px;
+}
+
+.alt-view-prat .alt-exem-cont #register {
+  padding: 10px;
+}
+
+.alt-view-prat .alt-exem-cont #register input {
+  font-size: 1rem;
+}
+
+.alt-view-prat .alt-exem-cont #register p {
+  font-size: 1rem;
+}
+

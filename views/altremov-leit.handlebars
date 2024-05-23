@@ -13,7 +13,7 @@
         <h3 class="offcanvas-title" id="offcanvasNavbarLabel">Opções de Navegação</h3>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="offcanvas-body" id="cad-height">
+      <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/" target="_blank">
@@ -47,7 +47,7 @@
 
 <header>
   <div class="text-header-cad">
-    <h3>Alterar/Remover Empréstimo</h3>
+    <h3>Alterar/Remover Leitores</h3>
   </div>
 </header>
 
@@ -55,50 +55,50 @@
   <section class="img-books">
     <img src="../imagens/image2.jpg" alt="livros">
   </section>
-  <section class="text-cadastro">
-    <div>
-      <div class="registers">
-        <div class="registers-cads">
-          <form id="register" action="/cad-emprestimo" method="POST" enctype="multipart/form-data">
-            <div>
-              <p>Data do Cadastro</p>
-              <input type="date" name="data">
-            </div>
-            <div>
-              <p>Código</p>
-              <input type="text" placeholder="Código do Leitor(a)" name="codleitor">
-            </div>
-            <div id="register-nome">
-              <p>Nome</p>
-              <input type="text" placeholder="Nome do Leitor(a)" name="nomeleitor">
-            </div>
-            <div>
-              <p>Código</p>
-              <input type="text" placeholder="Código do Exemplar" name="codexemplar">
-            </div>
-            <div id="register-nome">
-              <p>Título</p>
-              <input type="text" placeholder="Nome do Exemplar" name="titulo">
-            </div>
-            <div class="width-campo">
-              <p>Data Devolução</p>
-              <input type="date" name="devolprevdata">
-              <p>Status</p>
-              <select id="status" name="status">
-                <option value="Disponível">Disponível</option>
-                <option value="Indisponível">Indisponível</option>
-              </select>
-            </div>
-            <div id="register-obs">
-              <p>Observações</p>
-              <input type="text" placeholder="Digite as observações" name="obs">
-            </div>
-            <div>
-              <input class="btn btn-primary" type="submit" value="Alterar">
-              <a class="btn btn-secondary" href="/alterar">Cancelar</a>
-            </div>
-          </form>
-        </div>
+  {{!-- Formulário Alterações --}}
+  <section class="alt-view-prat">
+    <div class="alterar-prat">
+      <div class="card alt-prat">
+        <form id="register" action="/editar-leit" method="POST" enctype="multipart/form-data">
+          <div> 
+            <input type="hidden" name="codleitor" value="{{leitor.codleitor}}">
+            <p>Nome</p>
+            <input type="text" name="nomeleitor" value="{{leitor.nomeleitor}}" class="form-control">
+          </div>
+          <div>
+            <p>Série</p>
+            <select id="serie" name="serie">
+              <option>{{leitor.serie}}</option>
+              <option>série</option>
+              <option>1º ano</option>
+              <option>2º ano</option>
+              <option>3º ano</option>
+              <option>4º ano</option>
+              <option>5º ano</option>
+              <option>6º ano</option>
+              <option>7º ano</option>
+              <option>8º ano</option>
+              <option>9º ano</option>
+            </select>
+            <p>Cargo</p>
+            <input type="text" name="cargo" value="{{leitor.cargo}}" class="form-control">
+            <p>Status</p>
+            <select id="status" name="status">
+              <option>{{leitor.status}}</option>
+              <option>Ativo</option>
+              <option>Suspenso</option>
+              <option>Cancelado</option>
+            </select>
+          </div>
+          <div id="register-obs">
+            <p>Observações</p>
+            <input type="text" name="obs" value="{{leitor.observacao}}" class="form-control">
+          </div>
+          <div>
+            <input type="submit" class="btn btn-primary" value="Alterar">
+            <a href="/alterar" class="btn btn-secondary">Cancelar</a>
+          </div>
+        </form>
       </div>
     </div>
   </section>
