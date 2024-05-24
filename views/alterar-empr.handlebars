@@ -57,7 +57,7 @@
   </section>
   <section class="alterar-exem">
     <form id="register" action="/alterar-empr" method="POST" novalidate enctype="multipart/form-data">
-      <input type="search" placeholder="Código Leitor(a)" name="codleitor">      
+      <input type="search" placeholder="ID Empréstimo" name="id">      
       <div>
         <input class="btn btn-primary" type="submit" value="Buscar">
         <a class="btn btn-secondary" href="/alterar">Cancelar</a>
@@ -65,50 +65,35 @@
     </form>
   </section>
   {{!-- Formulário Alterações --}}
-  <section class="alt-view-exem">
+  <section class="alt-view-empr">
     <div class="registers">
-      <div class="card registers-cad">
-        {{#if emprestimos}}
-          {{#each emprestimos}}
-            <form id="register" action="/cad-emprestimo" method="POST" enctype="multipart/form-data">
-              <div class="width-campo-exem">
-                <p>Data do Cadastro {{data}}</p>
-                <input type="date" name="data">
-                <p>Código</p>
-                <input type="text" name="codleitor" placeholder={{codleitor}} >
-              </div>
-              <div id="register-nome">
-                <p>Nome</p>
-                <input type="text" name="nomeleitor" placeholder={{nomeleitor}} >
-              </div>
-              <div class="width-campo-exem">
-                <p>Código</p>
-                <input type="text" name="codexemplar" placeholder={{codexemplar}} >
-              </div>
-              <div id="register-nome">
-                <p>Título</p>
-                <input type="text" name="titulo" placeholder={{titulo}} >
-              </div>
-              <div class="width-campo-exem">
-                <p>Data Devolução {{devolprevdata}}</p>
-                <input type="date" name="devolprevdata">
-                <p>Status</p>
-                <select id="status" name="status">
-                  <option value={{status}}>{{status}}</option>
-                </select>
-              </div>
-              <div id="register-obs">
-                <p>Observações</p>
-                <input type="text" name="obs" placeholder={{observacao}} >
-              </div>
-              <div>
-                <input class="btn btn-primary" type="submit" value="Alterar">
-                <a class="btn btn-secondary" href="/alterar">Cancelar</a>
-              </div>
-            </form>
-            <hr>
-          {{/each}}
-        {{/if}}
+      <div class="alt-exem-cont">
+        {{#each emprestimos}}
+          <div class="alt-exem-div">
+            <p>ID: {{id}}</p>
+            <p>Data do Cadastro: {{data}}</p>
+          </div>
+          </div>
+          <div class="alt-exem-div">
+            <p>Código: {{codleitor}}</p>
+            <p>Nome: {{nomeleitor}}</p>
+          </div>
+          <div class="alt-exem-div">
+            <p>Código: {{codexemplar}}</p>
+            <p>Título: {{titulo}}</p>
+          </div>
+          <div class="alt-exem-div">
+            <p>Data Devolução: {{devolprevdata}}</p>
+            <p>Status: {{status}}</p>
+          </div>
+          <div class="alt-exem-div">
+            <p>Observações: {{observacao}}</p>
+          </div>
+          <div class="alt-exem-div">
+            <a href="/altremov-empr/{{id}}" class="btn btn-warning">Alterar</a>
+            <a href="/remove-empr/{{id}}" class="btn btn-danger">Remover</a>
+          </div>
+        {{/each}} 
       </div>
     </div>
   </section>

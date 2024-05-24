@@ -271,6 +271,30 @@ app.post('/editar-prat', function(req, res) {
   res.redirect('/alterar-prateleira');
 });
 
+// Rota direcionar para formulário Remover
+app.get('/remove-prat/:codprat', function(req, res) {
+  let codprat = req.params.codprat;
+  let sql = `SELECT * FROM prateleiras WHERE codprat = ?`;
+
+  conexao.query(sql, [codprat], function(erro, retorno) {
+    if(erro) throw erro;
+    res.render('remove-prat', { prateleiras:retorno[0] });
+  });
+});
+
+// Rota Remover Prateleira
+app.get('/remover-prat', function(req, res) {
+  let codprat = req.query.codprat;
+
+  let sql = `DELETE FROM prateleiras WHERE codprat = ?`
+
+  conexao.query(sql, [codprat], function(erro, retorno){
+    if(erro) throw erro;
+  });
+
+  res.redirect('/alterar-prateleira');
+});
+
 // Rota Alterar/Remover Administrador
 // Rota Direciona para página inicial
 app.get('/alterar-administrador', function(req, res) {
@@ -316,6 +340,30 @@ app.post('/editar-adm', function(req, res) {
   res.redirect('/alterar-administrador');
 });
 
+// Rota direcionar para formulário Remover
+app.get('/remove-adm/:codfunc', function(req, res) {
+  let codfunc = req.params.codfunc;
+  let sql = `SELECT * FROM administradores WHERE codfunc = ?`;
+
+  conexao.query(sql, [codfunc], function(erro, retorno) {
+    if(erro) throw erro;
+    res.render('remove-adm', { administradores:retorno[0] });
+  });
+});
+
+// Rota Remover Administrador
+app.get('/remover-adm', function(req, res) {
+  let codfunc = req.query.codfunc;
+
+  let sql = `DELETE FROM administradores WHERE codfunc = ?`
+
+  conexao.query(sql, [codfunc], function(erro, retorno){
+    if(erro) throw erro;
+  });
+
+  res.redirect('/alterar-administrador');
+});
+
 // Rota Alterar/Remover Leitor
 // Rota Direciona para página inicial
 app.get('/alterar-leitor', function(req, res) {
@@ -358,6 +406,30 @@ app.post('/editar-leit', function(req, res) {
     if(erro) throw erro;
   });
   
+  res.redirect('/alterar-leitor');
+});
+
+// Rota direcionar para formulário Remover
+app.get('/remove-leit/:codleitor', function(req, res) {
+  let codleitor = req.params.codleitor;
+  let sql = `SELECT * FROM leitor WHERE codleitor = ?`;
+
+  conexao.query(sql, [codleitor], function(erro, retorno) {
+    if(erro) throw erro;
+    res.render('remove-leit', { leitor:retorno[0] });
+  });
+});
+
+// Rota Remover Leitor
+app.get('/remover-leit', function(req, res) {
+  let codleitor = req.query.codleitor;
+
+  let sql = `DELETE FROM leitor WHERE codleitor = ?`
+
+  conexao.query(sql, [codleitor], function(erro, retorno){
+    if(erro) throw erro;
+  });
+
   res.redirect('/alterar-leitor');
 });
 
@@ -414,35 +486,168 @@ app.post('/editar-exem', function(req, res) {
   res.redirect('/alterar-exemplar');
 });
 
+// Rota direcionar para formulário Remover
+app.get('/remove-exem/:codexemplar', function(req, res) {
+  let codexemplar = req.params.codexemplar;
+  let sql = `SELECT * FROM exemplar WHERE codexemplar = ?`;
 
+  conexao.query(sql, [codexemplar], function(erro, retorno) {
+    if(erro) throw erro;
+    res.render('remove-exem', { exemplar:retorno[0] });
+  });
+});
 
+// Rota Remover Exemplar
+app.get('/remover-exem', function(req, res) {
+  let codexemplar = req.query.codexemplar;
+
+  let sql = `DELETE FROM exemplar WHERE codexemplar = ?`
+
+  conexao.query(sql, [codexemplar], function(erro, retorno){
+    if(erro) throw erro;
+  });
+
+  res.redirect('/alterar-exemplar');
+});
 
 // Rota Alterar/Remover Empréstimo
+// Rota Direciona para página inicial
 app.get('/alterar-emprestimo', function(req, res) {
   res.render('alterar-empr', { title: 'Alterar Empréstimo' });
 });
-  // Buscar Dados no BD
-app.post('/alterar-empr', function(req, res) {
-  let codleitor = req.body.codleitor;
-  let sql = `SELECT data, codleitor, nomeleitor, codexemplar, titulo, devolprevdata, status, observacao, DATE_FORMAT(data, '%d/%m/%Y') AS data, DATE_FORMAT(devolprevdata, '%d/%m/%Y') AS devolprevdata FROM emprestimos WHERE codleitor = ?`;
 
-  conexao.query(sql, [codleitor], function(erro, retorno) {
+// Buscar Dados no BD
+app.post('/alterar-empr', function(req, res) {
+  let id = req.body.id;
+  let sql = `SELECT id, data, codleitor, nomeleitor, codexemplar, titulo, devolprevdata, status, observacao, DATE_FORMAT(data, '%d/%m/%Y') AS data, DATE_FORMAT(devolprevdata, '%d/%m/%Y') AS devolprevdata FROM emprestimos WHERE id = ?`;
+
+  conexao.query(sql, [id], function(erro, retorno) {
     res.render('alterar-empr', { title: 'Busca Alterar', 'emprestimos':retorno });
   });
 });
 
+// Rota para redirecionar para o formulário alterar
+app.get('/altremov-empr/:id', function(req, res) {
+  let id = req.params.id;
+  let sql = `SELECT * FROM emprestimos WHERE id = ?`;
+
+  conexao.query(sql, [id], function(erro, retorno) {
+    if(erro) throw erro;
+    res.render('altremov-empr', { emprestimos:retorno[0] });
+  });
+});
+
+// Rota para Editar Dados do Empréstimo
+app.post('/editar-empr', function(req, res) {
+  let id = req.body.id;
+  let codleitor = req.body.codleitor;
+  let nomeleitor = req.body.nomeleitor;
+  let codexemplar = req.body.codexemplar;
+  let titulo = req.body.titulo;
+  let status = req.body.status;
+  let obs = req.body.obs;
+  
+  let sql = `UPDATE emprestimos SET codleitor='${codleitor}', nomeleitor='${nomeleitor}', codexemplar='${codexemplar}', titulo='${titulo}', status='${status}', observacao='${obs}' WHERE id = ?`;
+        
+  conexao.query(sql, [id], function(erro, retorno) {
+    if(erro) throw erro;
+  });
+  
+  res.redirect('/alterar-emprestimo');
+});
+
+// Rota direcionar para formulário Remover
+app.get('/remove-empr/:id', function(req, res) {
+  let id = req.params.id;
+  let sql = `SELECT * FROM emprestimos WHERE id = ?`;
+
+  conexao.query(sql, [id], function(erro, retorno) {
+    if(erro) throw erro;
+    res.render('remove-empr', { emprestimos:retorno[0] });
+  });
+});
+
+// Rota Remover Empréstimo
+app.get('/remover-empr', function(req, res) {
+  let id = req.query.id;
+
+  let sql = `DELETE FROM emprestimos WHERE id = ?`
+
+  conexao.query(sql, [id], function(erro, retorno){
+    if(erro) throw erro;
+  });
+
+  res.redirect('/alterar-emprestimo');
+});
+
 // Rota Alterar/Remover Devolução
+// Rota Direciona para página inicial
 app.get('/alterar-devolucao', function(req, res) {
   res.render('alterar-devo', { title: 'Alterar Devolução' });
 });
-  // Buscar Dados no BD
-app.post('/alterar-devo', function(req, res) {
-  let codleitor = req.body.codleitor;
-  let sql = `SELECT data, codleitor, nomeleitor, codexemplar, titulo, devolprevdata, status, observacao, DATE_FORMAT(data, '%d/%m/%Y') AS data, DATE_FORMAT(devolprevdata, '%d/%m/%Y') AS devolprevdata FROM devolucoes WHERE codleitor = ?`;
 
-  conexao.query(sql, [codleitor], function(erro, retorno) {
+// Buscar Dados no BD
+app.post('/alterar-devo', function(req, res) {
+  let id = req.body.id;
+  let sql = `SELECT id, data, codleitor, nomeleitor, codexemplar, titulo, devolprevdata, status, observacao, DATE_FORMAT(data, '%d/%m/%Y') AS data, DATE_FORMAT(devolprevdata, '%d/%m/%Y') AS devolprevdata FROM devolucoes WHERE id = ?`;
+
+  conexao.query(sql, [id], function(erro, retorno) {
     res.render('alterar-devo', { title: 'Busca Alterar', 'devolucoes':retorno });
   });
+});
+
+// Rota para redirecionar para o formulário alterar
+app.get('/altremov-devo/:id', function(req, res) {
+  let id = req.params.id;
+  let sql = `SELECT * FROM devolucoes WHERE id = ?`;
+
+  conexao.query(sql, [id], function(erro, retorno) {
+    if(erro) throw erro;
+    res.render('altremov-devo', { devolucoes:retorno[0] });
+  });
+});
+
+// Rota para Editar Dados da Devolução
+app.post('/editar-devo', function(req, res) {
+  let id = req.body.id;
+  let codleitor = req.body.codleitor;
+  let nomeleitor = req.body.nomeleitor;
+  let codexemplar = req.body.codexemplar;
+  let titulo = req.body.titulo;
+  let status = req.body.status;
+  let obs = req.body.obs;
+  
+  let sql = `UPDATE devolucoes SET codleitor='${codleitor}', nomeleitor='${nomeleitor}', codexemplar='${codexemplar}', titulo='${titulo}', status='${status}', observacao='${obs}' WHERE id = ?`;
+        
+  conexao.query(sql, [id], function(erro, retorno) {
+    if(erro) throw erro;
+  });
+  
+  res.redirect('/alterar-devolucao');
+});
+
+// Rota direcionar para formulário Remover
+app.get('/remove-devo/:id', function(req, res) {
+  let id = req.params.id;
+  let sql = `SELECT * FROM devolucoes WHERE id = ?`;
+
+  conexao.query(sql, [id], function(erro, retorno) {
+    if(erro) throw erro;
+    res.render('remove-devo', { devolucoes:retorno[0] });
+  });
+});
+
+// Rota Remover Devolução
+app.get('/remover-devo', function(req, res) {
+  let id = req.query.id;
+
+  let sql = `DELETE FROM devolucoes WHERE id = ?`
+
+  conexao.query(sql, [id], function(erro, retorno){
+    if(erro) throw erro;
+  });
+
+  res.redirect('/alterar-devolucao');
 });
 
 
