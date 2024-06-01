@@ -2,8 +2,12 @@
 const express = require('express');
 const mysql = require('mysql2');
 const { engine } = require('express-handlebars');
+const session = require('express-session');
+const bodyParser =require('body-parser');
+const bcrypt = require('bcryptjs');
 const fileupload = require('express-fileupload');
 const fs = require('fs');
+const path = require('path');
 
 // Criar o app
 const app = express();
@@ -12,6 +16,10 @@ const app = express();
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
+
+// Middleware para parsing do body
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Config Bootstrap
 app.use('/bootstrap', express.static('./node_modules/bootstrap/dist'));
@@ -28,15 +36,24 @@ app.use(fileupload());
 
 // Config Tipo de dados via rota (JSON)
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: true }));
 
 // Config Conexão BD
 const conexao = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'NandoDev1955',
-  database: 'bdbiblioteca'
+  database: 'bdbiblioteca',
+  charset: 'utf8mb4'
 });
+
+// Config Express-session - Login
+app.use(session({
+  secret:'lfjasadofjueioqw98465d4df45',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
 // Rota Principal - Página Inicial
 app.get('/', function(req, res) {
@@ -67,6 +84,33 @@ app.get('/login', function(req, res) {
   res.render('login', { title: 'Login' });
 });
 
+app.post('/login', (req, res) => {
+  const { codfunc, senha } = req.body;
+
+  const sql = `SELECT * FROM administradores WHERE codfunc = ?`;
+
+  conexao.query(sql, [codfunc], (err, results) => {
+    if (err) throw err;
+
+    if (results.length > 0) {
+      const user = results[0];
+      if (bcrypt.compareSync(senha, user.senha)) {
+        req.session.userId = user.id;
+        res.redirect('/cadastro');
+      } else {
+        res.send('Senha incorreta - Volte e corrija sua senha');
+      }
+    } else {
+        res.send('Usuário não encontrado');
+    }
+  });
+});
+
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/login');
+});
+
 // Rota Inicial de Cadastros
 app.get('/cadastro', function(req, res) {
   res.render('cadastro', { title: 'Cadastros' });
@@ -76,7 +120,7 @@ app.get('/cadastro', function(req, res) {
 app.get('/cadastro-adm', function(req, res) {
   res.render('cadastro-adm', { title: 'Cadastro de Administrador' });
 });
-
+  
 app.post('/cad-adm', function(req, res) {
   let data = req.body.data;
   let codfunc = req.body.codfunc;
@@ -85,10 +129,11 @@ app.post('/cad-adm', function(req, res) {
   let status = req.body.status;
   let senha = req.body.senha;
   let obs = req.body.obs;
+  const hashedPassword = bcrypt.hashSync(senha, 6);
 
-  let sql = `INSERT INTO administradores (data, codfunc, nomefunc, cargo, status, senha, observacao) VALUES ('${data}', ${codfunc}, '${nomefunc}', '${cargo}', '${status}', '${senha}', '${obs}')`;
+  let sql = `INSERT INTO administradores (data, codfunc, nomefunc, cargo, status, senha, observacao) VALUES ('${data}', ${codfunc}, '${nomefunc}', '${cargo}', '${status}', ? , '${obs}')`;
 
-  conexao.query(sql, function(erro, retorno) {
+  conexao.query(sql, [hashedPassword], function(erro, retorno) {
     if(erro) throw erro;
     console.log(retorno);
   });
@@ -140,13 +185,16 @@ app.post('/cad-exemplar', function(req, res) {
   let isbn =  req.body.isbn;
   let status = req.body.status;
   let obs = req.body.obs;
-  let imagem = req.files.imagem.name;
+  let imagem = Buffer.from(req.files.imagem.name, 'latin1').toString('utf8');
 
-  let sql = `INSERT INTO exemplar (data, codexemplar, prateleira, titulo, autor1, autor2, autor3, editora, edicao, publicacao, genero, isbn, status, observacao, imagem) VALUES ('${data}', '${codexemplar}', '${prateleira}', '${titulo}', '${autor1}', '${autor2}','${autor3}','${editora}','${edicao}','${publicacao}','${genero}','${isbn}','${status}','${obs}','${imagem}' )`;
+  let sql = `INSERT INTO exemplar (data, codexemplar, prateleira, titulo, autor1, autor2, autor3, editora, edicao, publicacao, genero, isbn, status, observacao, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )`;
 
-  conexao.query(sql, function(erro, retorno) {
+  let values = [data, codexemplar, prateleira, titulo, autor1, autor2, autor3, editora, edicao, publicacao, genero, isbn, status, obs, imagem];
+
+  conexao.query(sql, values, function(erro, retorno) {
     if(erro) throw erro;
-    req.files.imagem.mv('C:/Users/User/Desktop/UNIVESP/4 Período/3. Projeto Integrador I/projeto-integrador-controle-biblioteca/imagens/'+req.files.imagem.name);
+    let uploadPath = path.join(__dirname, 'imagens', Buffer.from(req.files.imagem.name, 'latin1').toString('utf8'));
+    req.files.imagem.mv(uploadPath);
     console.log(retorno);
   });
 

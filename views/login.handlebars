@@ -56,14 +56,14 @@
   <section class="text-login">
     <div>
       <h2>Login</h2>
-      <form action="#">
-        <input id="username" type="text" placeholder="Usuário">
+      <form action="/login" method="post">
+        <input id="username" type="text" name="codfunc" placeholder="Usuário" required>
         <span class="icon"><i class="bi bi-person-circle"></i></span>
         <br>
-        <input id="password" type="password" placeholder="Senha">
+        <input id="password" type="password" name="senha" placeholder="Senha" required>
         <span class="icon"><i class="bi bi-lock-fill"></i></span>
         <br>
-        <a href="/cadastro" id="button-login">Entrar</a>
+        <input type="submit" name="entrar" value="Entrar" id="button-login">
       </form>
     </div>
 
